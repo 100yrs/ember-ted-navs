@@ -8,12 +8,11 @@ export default Ember.Component.extend({
   _tedAppNav: true,
 
   subnavState: Ember.inject.service('ted-subnav-state'),
-  resolution: Ember.inject.service(),
   tagName: 'ul',
   classNames: ['Ted-nav nav nav-flaps'],
   inDOM: false,
 
-  navOffset: Ember.computed('inDOM', 'resolution.width', function() {
+  navOffset: Ember.computed('inDOM', function() {
     if (this.get('inDOM')) {
       return this.$().offset().left;
     } else {
@@ -39,9 +38,6 @@ export default Ember.Component.extend({
 
   setInitialState: Ember.on('init', function() {
     this.set('navItems', Ember.A());
-
-    // Dummy get to "initialize" resolution service
-    this.get('resolution.width');
 
     this.set('applicationController', getOwner(this).lookup('controller:application'));
   }),

@@ -15,7 +15,6 @@ const TedNavItem = Ember.Component.extend({
   }),
 
   /* Private */
-  resolution: Ember.inject.service(),
   tagName: 'li',
   classNameBindings: [
     ':Ted-app-nav-item',
@@ -44,13 +43,11 @@ const TedNavItem = Ember.Component.extend({
 
   isNotActive: computed.not('isActive'),
 
-  width: computed('resolution.width', function() {
-    this.get('resolution');
+  width: computed(function() {
     return this.$().width();
   }),
 
-  offset: computed('resolution.width', function() {
-    this.get('resolution');
+  offset: computed(function() {
     return this.$().offset().left;
   }),
 
